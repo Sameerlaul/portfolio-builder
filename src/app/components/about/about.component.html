@@ -1,0 +1,21 @@
+<div class="d-flex justify-content-center component-margin-top">
+  <div class="w-100">
+    <div class="d-flex flex-column padding-left-20 bg-primary flex-wrap">
+      <span class="html-tag" id="html-start-tag">&lt;html&gt;</span>
+      <span class="intro-text text-secondary ml-5"> Hi! I'm {{ basicDetails.name | firstName }}.</span>
+      <span class="intro-text text-secondary ml-5">
+        I'm a <span class="text-white">{{ basicDetails.role }}</span>.</span
+      >
+      <span class="html-tag" id="html-end-tag">&lt;/html&gt;</span>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex bg-primary-light height-60px"></div>
+<div class="d-flex bg-secondary height-60px"></div>
+
+<app-offer></app-offer>
+
+<hr class="bg-secondary ml-5 mr-5 mt-5" />
+
+<app-education></app-education>

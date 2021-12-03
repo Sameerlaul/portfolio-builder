@@ -1,0 +1,302 @@
+<div class="row d-flex justify-content-center component-margin-top">
+    <h1>Portfolio Builder</h1>
+    <div class="col-md-12 col-md-offset-3">
+        <form [formGroup]="personalDetails" id="msform">
+            <!-- progressbar -->
+            <ul id="progressbar">
+                <li [ngClass]="step>=1 ? 'active ' : 'inactive'">Personal Details</li>
+                <li [ngClass]="step>=2 ? 'active' : 'inactive'">Social Profiles</li>
+                <li [ngClass]="step>=3 ? 'active' : 'inactive'">Account Setup</li>
+                <li [ngClass]="step>=4 ? 'active' : 'inactive'">Account Setup</li>
+                <li [ngClass]="step==5 ? 'active' : 'inactive'">Account Setup</li>
+            </ul>
+            <!-- fieldsets -->
+
+            <fieldset *ngIf="step == 1">
+                <h2 class="fs-title">Basic Details</h2>
+                <input type="text" formControlName="name"
+                    [ngClass]="{ 'is-invalid': basic_step && personal.name.errors }" placeholder="Full Name" />
+                <div *ngIf="basic_step && personalDetails.controls.name.errors">
+                    <div class="errorText" *ngIf="personal.name.errors?.required">
+                        <p>Please Enter your Name</p>
+                    </div>
+                </div>
+                <input type="text" formControlName="role"
+                    [ngClass]="{ 'is-invalid': basic_step && personal.role.errors }" placeholder="Designation" />
+                <div *ngIf="basic_step && personalDetails.controls.role.errors">
+                    <div class="errorText" *ngIf="personal.role.errors?.required">
+                        <p>Please Enter Designation</p>
+                    </div>
+                </div>
+                <input type="email" formControlName="email" name="email" placeholder="Email" />
+                <div *ngIf="basic_step && personalDetails.controls.email.errors">
+                    <div class="errorText" *ngIf="personal.email.errors.required">
+                        <p>Please Enter Email</p>
+                    </div>
+                    <div class="errorText" *ngIf="personal.email.errors.email">
+                        <p>Please Enter valid Email</p>
+                    </div>
+                </div>
+                <input type="text" formControlName="linkedInUrl" name="linkedInUrl"
+                    placeholder="LinkedIn Profile Link" />
+                <div *ngIf="basic_step && personalDetails.controls.linkedInUrl.errors">
+                    <div class="errorText" *ngIf="personal.linkedInUrl.errors?.required">
+                        <p>Please Enter URL</p>
+                    </div>
+                </div>
+                <input type="text" formControlName="fbUrl" name="fbUrl"
+                    placeholder="Facebook Profile Link (Optional)" />
+
+                <input type="text" formControlName="instaUrl" name="instaUrl"
+                    placeholder="Instagram Profile Link (Optional)" />
+
+                <input type="text" formControlName="githubUrl" name="githubUrl"
+                    placeholder="Github Profile Link (Optional)" />
+
+                <input type="text" formControlName="tweeterUrl" name="tweeterUrl"
+                    placeholder="Tweeter Profile Link (Optional)" />
+
+                <input type="text" formControlName="skypeUrl" name="skypeUrl"
+                    placeholder="Skype Profile Link (Optional)" />
+
+                <input (click)="next()" type="button" name="next" class="next action-button" value="Next" />
+            </fieldset>
+        </form>
+        <form [formGroup]="workDetails" id="msform">
+            <fieldset *ngIf="step == 2">
+                <h2 class="fs-title">Work Experience</h2>
+                <input type="number" formControlName="yearsOfExp" placeholder="Years of Experience" />
+                <div *ngIf="workDetails_step && workDetails.controls.yearsOfExp.errors">
+                    <div class="errorText" *ngIf="getWork.yearsOfExp.errors.required">Please enter Years of Experience
+                    </div>
+                    <div class="errorText" *ngIf="getWork.yearsOfExp.errors.max">Maximum 2 digits are allowed</div>
+                    <div class="errorText" *ngIf="getWork.yearsOfExp.errors.min">Negative numbers are not allowed</div>
+                </div>
+                <select (change)="onSelectSkill()" formControlName="skills" class="form-select"
+                    aria-label="Default select example">
+                    <option value="" selected disabled>Select Skills (You can choose multiple Skills)</option>
+                    <option *ngFor="let skill of skillsList" [ngValue]="skill">{{skill.name}}</option>
+                </select>
+
+                <div class="errorText" *ngIf="workDetails_step && userSkillsList.length == 0">Please add Skills
+                </div>
+
+                <div *ngIf="userSkillsList.length > 0" style="margin-bottom: 10px;">
+                    Your Skills:
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center"
+                            *ngFor="let skill of userSkillsList; let i = index">
+                            {{skill.name}}
+                            <button (click)="removeSkill(i)" type="button" class="close" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <input type="text" formControlName="responsibility"
+                        placeholder="Add Responsibility (You can Add multiple entries)"
+                        aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <button (click)="addResponsibility()" class="btn btn-secondary" style="margin-bottom: 10px;"
+                        type="button">Add</button>
+                </div>
+                <div *ngIf="workDetails.controls.responsibility.errors">
+                    <div class="errorText" *ngIf="getWork.responsibility.errors.maxlength">Maximum 100 letters are
+                        allowed</div>
+                </div>
+                <div class="errorText" *ngIf="workDetails_step && userResponsibilities.length == 0">
+                    Add Responsibilities
+                </div>
+                <div *ngIf="userResponsibilities.length > 0" style="margin-bottom: 10px;">
+                    Responsibilities:
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center"
+                            *ngFor="let res of userResponsibilities; let i = index">
+                            {{res}}
+                            <button (click)="removeResponsibility(i)" type="button" class="close" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <input (click)="previous()" type="button" name="previous" class="previous action-button-previous"
+                    value="Previous" />
+                <input (click)="next()" type="button" name="next" class="next action-button" value="Next" />
+            </fieldset>
+        </form>
+        <form [formGroup]="educationalDetails" id="msform">
+            <fieldset *ngIf="step == 3">
+                <div formArrayName="education">
+                    <div *ngFor="let edu of getEducation.education['controls']; let i = index" [formGroupName]="i">
+                        <h2 class="fs-title">Educational Details {{ i + 1 }}
+                            <button *ngIf="i != 0" (click)="removeEduItem(i)" type="button" class="close"
+                                aria-label="Close">
+                                <span style="color: red;" aria-hidden="true">&times;</span>
+                            </button>
+                        </h2>
+                        <input type="number" formControlName="passingYear" placeholder="Year of Passing" />
+                        <div *ngIf="education_step && getEduItemControl(i).passingYear.errors">
+                            <div class="errorText" *ngIf="getEduItemControl(i).passingYear.errors.required">Please Enter
+                                Passing Year</div>
+                            <div class="errorText" *ngIf="getEduItemControl(i).passingYear.errors.min">Please Enter
+                                Passing Year 1947 onwards</div>
+                            <div class="errorText" *ngIf="getEduItemControl(i).passingYear.errors.max">Please Enter
+                                Passing Year below 2025</div>
+                        </div>
+                        <input type="text" formControlName="field" placeholder="Field of Study" />
+                        <div *ngIf="education_step && getEduItemControl(i).field.errors">
+                            <div class="errorText" *ngIf="getEduItemControl(i).field.errors?.required">Please Enter
+                                Field of Study</div>
+                        </div>
+                        <input type="text" formControlName="institute" placeholder="Institute" />
+                        <div *ngIf="education_step && getEduItemControl(i).institute.errors">
+                            <div class="errorText" *ngIf="getEduItemControl(i).institute.errors?.required">Please Enter
+                                Institute
+                            </div>
+                        </div>
+                        <input type="text" formControlName="city" placeholder="City" />
+                        <div *ngIf="education_step && getEduItemControl(i).city.errors">
+                            <div class="errorText" *ngIf="getEduItemControl(i).city.errors?.required">Please Enter
+                                City
+                            </div>
+                        </div>
+                        <input type="number" formControlName="total_marks" placeholder="Total Marks" />
+                        <div *ngIf="education_step && getEduItemControl(i).total_marks.errors">
+                            <div class="errorText" *ngIf="getEduItemControl(i).total_marks.errors.required">Please Enter
+                                Total marks</div>
+                            <div class="errorText" *ngIf="getEduItemControl(i).total_marks.errors.max">You can not enter
+                                marks greater than 100</div>
+                        </div>
+                        <input *ngIf="i == this.getEducation.education['controls'].length - 1" (click)="addEducation()"
+                            type="button" name="addEdu" class="previous action-button-add" value="Add" />
+                    </div>
+                    <input (click)="previous()" type="button" name="previous" class="previous action-button-previous"
+                        value="Previous" />
+                    <input (click)="next()" type="button" name="next" class="next action-button" value="Next" />
+                </div>
+            </fieldset>
+        </form>
+
+        <form [formGroup]="frontendDevExp" id="msform">
+            <fieldset *ngIf="step == 4">
+                <h2 class="fs-title">Front End Development Experience</h2>
+                <textarea rows="2" cols="5" formControlName="description" placeholder="Description"></textarea>
+                <div *ngIf="frontend_step && frontendDevExp.controls.description.errors">
+                    <div class="errorText" *ngIf="getFrontendExp.description.errors.required">Please Enter Description
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <input type="text" formControlName="skills"
+                        placeholder="Describe your skiils in one line (You can Add multiple entries)"
+                        aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <button (click)="addSkillDescription()" class="btn btn-secondary" style="margin-bottom: 10px;"
+                        type="button">Add</button>
+                </div>
+                <div *ngIf="frontendDevExp.controls.skills.errors">
+                    <div class="errorText" *ngIf="getFrontendExp.responsibility.errors.maxlength">Maximum 100 letters
+                        are
+                        allowed</div>
+                </div>
+                <div class="errorText" *ngIf="frontend_step && userSkillDesc.length == 0">
+                    Add Skills Decription
+                </div>
+                <div *ngIf="userSkillDesc.length > 0" style="margin-bottom: 10px;">
+                    Responsibilities:
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center"
+                            *ngFor="let res of userSkillDesc; let i = index">
+                            {{res}}
+                            <button (click)="rmSkillDescription(i)" type="button" class="close" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <input (click)="previous()" type="button" name="previous" class="previous action-button-previous"
+                    value="Previous" />
+                <input (click)="next()" type="button" name="next" class="next action-button" value="Next" />
+            </fieldset>
+        </form>
+
+        <form [formGroup]="workTimeline" id="msform">
+            <fieldset *ngIf="step == 5">
+                <div formArrayName="wt">
+                    <div *ngFor="let work of getWorkTimeline.wt['controls']; let i = index" [formGroupName]="i">
+                        <h2 class="fs-title">Work Timeline {{ i + 1 }}
+                            <button *ngIf="i != 0" (click)="removeWt(i)" type="button" class="close" aria-label="Close">
+                                <span style="color: red;" aria-hidden="true">&times;</span>
+                            </button>
+                        </h2>
+                        <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
+                            formControlName="startDate" placeholder="Start Date" />
+                        <div *ngIf="workTimeline_step && getWTControl(i).startDate.errors">
+                            <div class="errorText" *ngIf="getWTControl(i).startDate.errors?.required">Please Select
+                                Start Date
+                            </div>
+                        </div>
+                        <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
+                            formControlName="endDate" placeholder="End Date" />
+                        <div *ngIf="workTimeline_step && getWTControl(i).endDate.errors">
+                            <div class="errorText" *ngIf="getWTControl(i).endDate.errors?.required">Please Select End
+                                Date
+                            </div>
+                        </div>
+                        <input type="text" formControlName="jobTitle" placeholder="Job Title" />
+                        <div *ngIf="workTimeline_step && getWTControl(i).jobTitle.errors">
+                            <div class="errorText" *ngIf="getWTControl(i).jobTitle.errors?.required">Please Enter
+                                Job Title
+                            </div>
+                        </div>
+                        <input type="text" formControlName="companyName" placeholder="Company Name" />
+                        <div *ngIf="workTimeline_step && getWTControl(i).companyName.errors">
+                            <div class="errorText" *ngIf="getWTControl(i).companyName.errors?.required">Please Enter
+                                Company Name
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <input type="text" formControlName="responsibilities"
+                                placeholder="Describe your responsibility in one line (You can Add multiple entries)"
+                                aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <button (click)="addWtResponsibility(i)" class="btn btn-secondary"
+                                style="margin-bottom: 10px;" type="button">Add</button>
+                        </div>
+                        <div *ngIf="getWTControl(i).responsibilities.errors">
+                            <div class="errorText" *ngIf="getWTControl(i).responsibilities.errors.maxlength">Maximum 30
+                                letters are
+                                allowed</div>
+                        </div>
+                        <div class="errorText" *ngIf="workTimeline_step && wtResponsibilities[i].length == 0">
+                            Add Skills Decription
+                        </div>
+                        <div *ngIf="wtResponsibilities[i]?.length > 0" style="margin-bottom: 10px;">
+                            Responsibilities:
+                            <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between align-items-center"
+                                    *ngFor="let res of wtResponsibilities[i]; let j = index">
+                                    {{res}}
+                                    <button (click)="removeWtResponsibility(i,j)" type="button" class="close"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- <input type="text" formControlName="total_marks" placeholder="Total Marks" />
+                        <div *ngIf="workTimeline_step && getWTControl(i).total_marks.errors">
+                            <div class="errorText" *ngIf="getWTControl(i).total_marks.errors?.required">Please EnterTotal
+                                marks
+                            </div>
+                        </div> -->
+                        <input *ngIf="i == this.getWorkTimeline.wt['controls'].length - 1" (click)="addWt()"
+                            type="button" name="addEdu" class="previous action-button-add" value="Add" />
+                    </div>
+                    <input (click)="previous()" type="button" name="previous" class="previous action-button-previous"
+                        value="Previous" />
+                    <input (click)="submit()" type="submit" name="submit" class="submit action-button" value="Submit" />
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

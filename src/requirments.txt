@@ -1,0 +1,32 @@
+About Componets :
+    Name,
+    Role,
+
+    => Offer Component: 
+            Years of experience,
+            Skills,
+            Responsibilities
+
+    => Education Component:
+            passing year,
+            field,
+            institute,
+            city,
+            grade, 
+Work Component: 
+    => Experience in details
+    => Work TimeLine:
+        start and end Date,
+        organiztion name,
+        roles and responsibilty
+
+
+    Input Componet: 
+        Name,
+        Role, 
+
+{
+    about: {
+        
+    }
+}

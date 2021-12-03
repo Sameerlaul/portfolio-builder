@@ -1,0 +1,32 @@
+<footer *ngIf="isFooterVisible" class="bg-primary mt-5">
+  <div class="d-flex flex-column flex-md-row">
+    <div
+      class="d-flex text-white pt-2 pb-2 mr-md-auto ml-md-3 justify-content-center"
+    >
+      ©2021 Copyright&nbsp;:
+      <a class="text-secondary ml-1" target="blank"
+        [href]="'https://mail.google.com/mail/u/0/?fs=1&to=' + basicDetails.email + '&tf=cm'">
+          {{basicDetails.email}}</a>
+    </div>
+    <div class="d-flex justify-content-center pt-2 pb-2">
+      <a *ngIf="basicDetails.fbUrl" class="mr-4" [href]="'//' + basicDetails.fbUrl">
+        <fa-icon [icon]="faFacebook" class="text-white" size="lg"></fa-icon>
+      </a>
+      <a class="mr-4" [href]="'//' + basicDetails.linkedInUrl"  target="blank">
+        <fa-icon [icon]="faLinkedin" class="text-white" size="lg"></fa-icon>
+      </a>
+      <a *ngIf="basicDetails.githubUrl" class="mr-4" [href]="'//' + basicDetails.githubUrl"  target="blank">
+        <fa-icon [icon]="faGithub" class="text-white" size="lg"></fa-icon>
+      </a>
+      <a *ngIf="basicDetails.skypeUrl" class="mr-4" [href]="'//' + basicDetails.skypeUrl"  target="blank">
+        <fa-icon [icon]="faSkype" class="text-white" size="lg"></fa-icon>
+      </a>
+      <a *ngIf="basicDetails.instaUrl" class="mr-4" [href]="'//' + basicDetails.instaUrl"  target="blank">
+        <fa-icon [icon]="faInstagram" class="text-white" size="lg"></fa-icon>
+      </a>
+      <a *ngIf="basicDetails.tweeterUrl" class="mr-md-4" [href]="'//' + basicDetails.tweeterUrl" target="blank">
+        <fa-icon [icon]="faTwitter" class="text-white" size="lg"></fa-icon>
+      </a>
+    </div>
+  </div>
+</footer>

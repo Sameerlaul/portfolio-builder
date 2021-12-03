@@ -1,0 +1,45 @@
+<div class="d-flex justify-content-center mt-5">
+  <div class="d-flex flex-column card-width shadow bg-secondary-light">
+    <div class="d-flex">
+      <div class="d-flex mr-auto ml-2">
+        <span class="card-header-text text-primary font-weight-bold"
+          >MY OFFER</span
+        >
+      </div>
+      <div class="d-flex align-items-center mr-2">
+        <span class="dot bg-secondary"></span>
+        <span class="dot ml-1 bg-primary-light"></span>
+        <span class="dot ml-1 bg-primary"></span>
+      </div>
+    </div>
+
+    <div
+      class="d-flex flex-column text-primary bg-white text-monospace card-body-text"
+    >
+      <span class="mt-2 ml-2 mr-2">
+        I have been developing high quality web applications since
+        <b>{{ workDetails.yearsOfExp }}+ years</b>. I specialize in various Frontend technologies.
+      </span>
+      <span class="mt-4 ml-2 mr-2">
+        My Current technology stack includes
+        <b>{{getSkills()}}</b> and various other
+        frameworks and libraries related to them.
+      </span>
+
+      <span class="mt-4 ml-2 mr-2">
+        I can help you with multiple areas of projects:
+      </span>
+
+      <div
+        class="d-flex mt-2 ml-2 mr-2 p-4 mb-2 bg-primary-light border-secondary"
+      >
+        <div class="flex-column font-weight-bold text-white">
+          <div *ngFor="let res of workDetails.userResponsibilities" class="d-flex align-items-center">
+            <span>{{ "{}" }}</span>
+            <span class="ml-3">{{res}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

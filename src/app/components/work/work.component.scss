@@ -1,0 +1,29 @@
+@media (min-width: 0px) {
+  .sub-card-width {
+    width: 100%;
+  }
+}
+
+@media (min-width: 700px) {
+  .sub-card-width {
+    width: 90%;
+  }
+}
+
+@media (min-width: 1000px) {
+  .sub-card-width {
+    width: 50%;
+  }
+}
+
+@media (min-width: 0px) {
+  .sub-card-header-text {
+    font-size: 1.4em;
+  }
+}
+
+@media (min-width: 1000px) {
+  .sub-card-header-text {
+    font-size: 1.8em;
+  }
+}

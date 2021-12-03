@@ -1,0 +1,116 @@
+$primary: #17252a;
+$secondary: #3aafa9;
+
+$primary-light: #2b7a78;
+$secondary-light: #def2f1;
+
+.bg-primary-light {
+  background-color: $primary-light;
+}
+
+.bg-secondary-light {
+  background-color: $secondary-light;
+}
+
+.text-primary-light {
+  color: $primary-light;
+}
+
+.text-secondary-light {
+  color: $secondary-light;
+}
+
+.component-margin-top {
+  margin-top: 83px;
+}
+
+@media (min-width: 0px) {
+  .card-header-text {
+    font-size: 1.8em;
+  }
+}
+
+@media (min-width: 500px) {
+  .card-header-text {
+    font-size: 2em;
+  }
+}
+
+@media (min-width: 0px) {
+  .card-body-text {
+    font-size: 0.9em;
+  }
+}
+
+@media (min-width: 500px) {
+  .card-body-text {
+    font-size: 1.1em;
+  }
+}
+
+@media (min-width: 1100px) {
+  .card-body-text {
+    font-size: 1.3em;
+  }
+}
+
+@media (min-width: 0px) {
+  .card-width {
+    width: 90%;
+  }
+}
+
+@media (min-width: 1000px) {
+  .card-width {
+    width: 75%;
+  }
+}
+
+.dot {
+  border-radius: 50%;
+  display: inline-block;
+}
+
+@media (min-width: 0px) {
+  .dot {
+    height: 28px;
+    width: 28px;
+  }
+}
+
+@media (min-width: 500px) {
+  .dot {
+    height: 32px;
+    width: 32px;
+  }
+}
+
+@media (min-width: 0px) {
+  .sub-card-width {
+    width: 100%;
+  }
+}
+
+@media (min-width: 700px) {
+  .sub-card-width {
+    width: 90%;
+  }
+}
+
+@media (min-width: 1000px) {
+  .sub-card-width {
+    width: 50%;
+  }
+}
+
+@media (min-width: 0px) {
+  .sub-card-header-text {
+    font-size: 1.4em;
+  }
+}
+
+@media (min-width: 1000px) {
+  .sub-card-header-text {
+    font-size: 1.8em;
+  }
+}

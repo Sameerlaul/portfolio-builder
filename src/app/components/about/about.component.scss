@@ -1,0 +1,57 @@
+#html-start-tag {
+  margin-top: 85px !important;
+}
+
+#html-end-tag {
+  margin-bottom: 85px !important;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.html-tag {
+  color: rgb(18, 228, 228);
+  font-weight: bold;
+  font-size: 3.5em;
+}
+
+.intro-text {
+  font-weight: bold;
+  font-size: 3.5em;
+}
+
+@media (min-width: 0px) {
+  .html-tag,
+  .intro-text {
+    font-size: 1.5rem;
+  }
+}
+@media (min-width: 770px) {
+  .html-tag,
+  .intro-text {
+    font-size: 2.5rem;
+  }
+}
+@media (min-width: 990px) {
+  .html-tag,
+  .intro-text {
+    font-size: 3.2rem;
+  }
+}
+@media (min-width: 1200px) {
+  .html-tag,
+  .intro-text {
+    font-size: 3.2rem;
+  }
+}
+
+@media (min-width: 0px) {
+  .padding-left-20 {
+    padding-left: 13%;
+  }
+}
+
+.height-60px {
+  height: 60px;
+}
