@@ -12,7 +12,7 @@ It uses following tools and concepts:
 
 ## How To Run App
 
-1. Clone/download project - `https://github.com/Neptune-Ubicom/tr-assignment.git`
+1. Clone/download project - `https://github.com/Sameerlaul/portfolio-builder.git`
 
 2. Go to downloaded folder & run `ng serve` for a dev server.
 
